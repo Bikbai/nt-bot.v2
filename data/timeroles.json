@@ -1,0 +1,42 @@
+[
+    {
+        "py/object": "ntbot.TimeRole",
+        "memberid": 1023007489458966548,
+        "roleid": 1028258232340336641,
+        "endDate": 1666729177.774542,
+        "member_display_name": "TestBotXXXXX",
+        "nextRoleId": 1028933964599148584
+    },
+    {
+        "py/object": "ntbot.TimeRole",
+        "memberid": 1023007489458966548,
+        "roleid": 1023006907067281539,
+        "endDate": 1666733909.178501,
+        "member_display_name": "TestBotXXXXX",
+        "nextRoleId": null
+    },
+    {
+        "py/object": "ntbot.TimeRole",
+        "memberid": 1023007489458966548,
+        "roleid": 1028934051886813235,
+        "endDate": 1669239972.456844,
+        "member_display_name": "TestBotXXXXX",
+        "nextRoleId": null
+    },
+    {
+        "py/object": "ntbot.TimeRole",
+        "memberid": 1025156240751480842,
+        "roleid": 1028258232340336641,
+        "endDate": 1666948477.952181,
+        "member_display_name": "[z] TestUser",
+        "nextRoleId": 1028933964599148584
+    },
+    {
+        "py/object": "ntbot.TimeRole",
+        "memberid": 1025156240751480842,
+        "roleid": 1023006907067281539,
+        "endDate": 1666948569.849853,
+        "member_display_name": "[z] TestUser",
+        "nextRoleId": null
+    }
+]
