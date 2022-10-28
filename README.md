@@ -18,3 +18,7 @@ git clone https://github.com/Bikbai/nt-bot.v2.git
 cd nt-bot.v2
 .\run.ps1
 ```
+
+Командный файл спросит значение секретного токена бота, который можно на машине прописать в переменную окружения BOT_TOKEN
+
+Последующие запуски - запуск в Powershell run.ps1
