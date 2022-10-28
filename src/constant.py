@@ -2,9 +2,13 @@ import os
 from enum import Enum
 from discord.components import SelectOption
 
+from src.utility import log_critical
+
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 if BOT_TOKEN is None:
-    raise Exception("Не задан секретный токен бота")
+    log_critical(f"Не задан секретный токен бота.")
+    while BOT_TOKEN is None:
+        BOT_TOKEN = input("Введите секретный токен бота, может быть указан в переменной окружения BOT_TOKEN:")
 GUILD_LIST_URL = 'http://nordic-tribe.ru/guildlist.php'
 GL_FILENAME = './data/guild.txt'
 TR_FILENAME = "./data/timeroles.json"
