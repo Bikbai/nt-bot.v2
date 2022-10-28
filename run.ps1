@@ -1,5 +1,3 @@
-Write-Host "Апгрейд питонов"
-python.exe -m pip install --upgrade pip
 Write-Host "Настройка виртуальной инфраструктуры venv"
 python -m venv venv
 Write-Host "Активация виртуализации"
