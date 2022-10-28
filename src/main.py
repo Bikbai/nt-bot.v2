@@ -1,12 +1,9 @@
+import colorama
+colorama.init()
+import constant as c
 import ntbot
 from timerole import CommandContext, TimeRoleViewController, DurationModal
-
-import colorama
 import discord
-
-import constant as c
-
-colorama.init()
 
 bot = ntbot.NtBot()
 
