@@ -2,7 +2,7 @@ import os
 from enum import Enum
 from discord.components import SelectOption
 
-from src.utility import log_critical
+from utility import log_critical
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 if BOT_TOKEN is None:
