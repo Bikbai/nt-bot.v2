@@ -85,12 +85,31 @@ class NtBot(commands.Bot):
     __guild_list = dict()
     trStorage: TimeRoles = TimeRoles()
 
+    def __init_token__(self):
+        if c.BOT_TOKEN is not None:
+            return
+        if c.BOT_TOKEN is None:
+            if os.path.exists(c.TOKEN_FILENAME):
+                with open(c.TOKEN_FILENAME, "r") as file:
+                    c.BOT_TOKEN = file.readline()
+                    if c.BOT_TOKEN is not None:
+                        return
+                    log_warning(f"Не задан секретный токен бота в переменной окружения, считан из файла")
+
+        while c.BOT_TOKEN is None:
+            c.BOT_TOKEN = input(
+                "Введите секретный токен бота, может быть указан в переменной окружения BOT_TOKEN:")
+        with open(c.TOKEN_FILENAME, "w") as file:
+            file.write(c.BOT_TOKEN)
+            log_warning(f"Cекретный токен бота сохранён в файле {c.TOKEN_FILENAME}")
+
     def __init__(self):
         intents = discord.Intents.default()
         intents.members = True
         intents.message_content = True
+        self.__init_token__()
         super().__init__(
-            command_prefix=commands.when_mentioned_or("!"), intents=intents
+            command_prefix=commands.when_mentioned_or("rp!"), intents=intents
         )
 
     async def on_ready(self):
@@ -315,7 +334,7 @@ class NtBot(commands.Bot):
             await self.__validate_timed_role__(member, r)
         return
 
-    async def validate_timed_roles_cmd(self,ctx: discord.ApplicationContext, member: discord.Member):
+    async def validate_timed_roles_cmd(self, ctx: discord.ApplicationContext, member: discord.Member):
         """
         Метод проверки членов гильдии на предмет просроченных временных ролей
         :param member:
@@ -330,6 +349,3 @@ class NtBot(commands.Bot):
             if code != 0:
                 await ctx.followup.send(content=msg, ephemeral=True)
         return
-
-
-

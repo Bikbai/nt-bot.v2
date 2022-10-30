@@ -1,9 +1,14 @@
 import colorama
+import os
+from discord.ext import commands
+
 colorama.init()
 import constant as c
 import ntbot
 from timerole import CommandContext, TimeRoleViewController, DurationModal
 import discord
+from utility import log_warning
+
 
 bot = ntbot.NtBot()
 
@@ -36,5 +41,10 @@ async def check(ctx: discord.ApplicationContext, member: discord.Member):  # Use
     await ctx.followup.send(content=msg, ephemeral=True)
     await bot.validate_timed_roles_cmd(ctx=ctx, member=member)
 
+
+@bot.event
+async def on_command_error(context, exception):
+    if isinstance(exception, commands.CommandNotFound):
+        pass
 
 bot.run(c.BOT_TOKEN)
