@@ -17,9 +17,7 @@ async def newbie(ctx: discord.ApplicationContext, member: discord.Member):
 
     msg = await bot.add_timed_role(member=member,
                              role=bot.known_roles[c.RolesEnum.NEWBIE_ROLE.name],
-                             ed=cctx.getDurationTS(),
-                             nextrole=bot.known_roles[c.RolesEnum.TRIAL_ROLE.name]
-                             )
+                             ed=cctx.getDurationTS())
     await ctx.send(f"Новичок: {msg}", delete_after=15)
 
 
@@ -38,10 +36,5 @@ async def check(ctx: discord.ApplicationContext, member: discord.Member):  # Use
     await ctx.followup.send(content=msg, ephemeral=True)
     await bot.validate_timed_roles_cmd(ctx=ctx, member=member)
 
-
-@bot.slash_command()  # Create a slash command
-async def rp_hello(ctx: discord.ApplicationContext):
-    """Say hello to the bot"""  # The command description can be supplied as the docstring
-    await ctx.respond(f"Hello {ctx.author}!")
 
 bot.run(c.BOT_TOKEN)

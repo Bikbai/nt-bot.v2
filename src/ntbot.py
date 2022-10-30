@@ -20,7 +20,7 @@ class TimeRole:
     roleid: int
     endDate: float
     member_display_name: Optional[str]
-    nextRoleId: Optional[int]
+    nextRoleId: int
 
 
 class TimeRoles:
@@ -152,17 +152,14 @@ class NtBot(commands.Bot):
     async def saveRole(self, interaction: discord.Interaction):
         await interaction.message.edit(content=f"Роль успешно сохранена.", view=None, delete_after=15)
 
-    async def add_timed_role(self, member: discord.Member, role: discord.Role, ed: float, nextrole: Optional[discord.Role] = None) -> (str):
+    async def add_timed_role(self, member: discord.Member, role: discord.Role, ed: float) -> (str):
         try:
-            if nextrole is None:
-                nextRoleId = None
-            else:
-                nextRoleId = nextrole.id
+            nextRoleId = self.known_roles[c.RolesEnum.TRIAL_ROLE.name].id
             tr = TimeRole(member.id, role.id, ed, member.display_name, nextRoleId)
             code = self.trStorage.merge(tr)
             match code:
                 case "I":
-                    log_info(f"Временная роль добавлена пользователю {member.display_name}")
+                    log_warning(f"Временная роль добавлена пользователю {member.display_name}")
                     msg = "Роль добавлена"
                 case "U":
                     msg = "Роль продлена"
@@ -278,13 +275,12 @@ class NtBot(commands.Bot):
             return -1, msg
         iTr = self.trStorage.find(member, role)
         if iTr is None:
-            return 0, "Роль не найдена"
+            return 0, "Ок, временная роль не найдена"
         # всё есть, проверяем - жива или нет. Если просрочена - очищаем
         msg = f"Мембер {member.display_name}, найдена временная роль {role.name}, срок до {datetime.fromtimestamp(iTr.endDate)}"
         log_info(msg)
         if iTr.endDate < time():
-            await member.remove_roles(get(member.guild.roles, id=role.id))
-            await asyncio.sleep(1)
+            # роль не удаляется, вешается аудит
             self.trStorage.delete(iTr)
             # если выставлена подменяющая роль - выставляем
             if iTr.nextRoleId is None:
@@ -293,8 +289,10 @@ class NtBot(commands.Bot):
                 await member.add_roles(get(member.guild.roles, id=iTr.nextRoleId))
                 await asyncio.sleep(10)
                 log_info(f"Добавлена роль {get(member.guild.roles, id=iTr.nextRoleId).name}")
+            await member.remove_roles(get(member.guild.roles, id=iTr.roleid))
+            await asyncio.sleep(10)
             msg = f"Временная роль очищена у пользователя {member.display_name}"
-            log_info(msg)
+            log_warning(msg)
             return 2, msg
         return 1, msg
 

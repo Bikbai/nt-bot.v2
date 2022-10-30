@@ -24,22 +24,24 @@ class RolesEnum(Enum):
     NEWBIE_ROLE = 'Новичок'
     TRIAL_ROLE = 'Аудит'
     CHILL_ROLE = 'Чилл'
+    VAC_ROLE = 'Отпуск'
+    PENY_ROLE = 'Штрафник'
 
     @classmethod
     def known_timeroles(cls):
         return {
             # сюда вписываем список доступных ролей для тайм-роли
             cls.CHILL_ROLE.name: "Освобождение от КТА на указанный срок",
-            cls.NEWBIE_ROLE.name: "Эту роль нежелательно выставлять так, не будет работать автомат Новичок->Аудит",
-            cls.ADMIN_ROLE.name: "А вдруг?!",
-            cls.PLAYER_ROLE.name: "А вдруг?!"
+            cls.NEWBIE_ROLE.name: "Новичок на произвольный срок",
+            cls.VAC_ROLE.name: "После истечения срока можно будет уточнить наличие",
+            cls.PENY_ROLE.name: "Чтобы отследить - выплатил ли штраф",
         }
 
     @classmethod
     def BuildSelectOption(cls) -> list[SelectOption]:
-        l = list()
+        lst = list()
         kt = cls.known_timeroles()
         for key, value in kt.items():
-            l.append(SelectOption(label=str(RolesEnum[key].value), value=str(RolesEnum[key].value), description=value))
-        l[0].default = True
-        return l
+            lst.append(SelectOption(label=str(RolesEnum[key].value), value=str(RolesEnum[key].value), description=value))
+        lst[0].default = True
+        return lst
