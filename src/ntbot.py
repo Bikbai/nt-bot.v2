@@ -1,4 +1,5 @@
 import asyncio
+import subprocess
 from datetime import datetime
 from time import time, time_ns
 import os
@@ -126,12 +127,7 @@ class NtBot(commands.Bot):
                     log_info(f"done. starting main loop")
                     while True:
                         log_info(f'Запуск проверки')
-                        while True:
-                            log_info(f'Запуск проверки')
-                            await self.check_guild()
-                            log_info(f"Следующая проверка в: {datetime.fromtimestamp(time() + c.SLEEP_DELAY)}")
-                            await asyncio.sleep(c.SLEEP_DELAY)
-
+                        await self.check_guild()
                         log_info(f"Следующая проверка в: {datetime.fromtimestamp(time() + c.SLEEP_DELAY)}")
                         await asyncio.sleep(c.SLEEP_DELAY)
 
