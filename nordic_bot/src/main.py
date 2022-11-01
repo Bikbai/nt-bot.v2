@@ -1,5 +1,4 @@
 import colorama
-import os
 from discord.ext import commands
 
 colorama.init()
@@ -7,8 +6,6 @@ import constant as c
 import ntbot
 from timerole import CommandContext, TimeRoleViewController, DurationModal
 import discord
-from utility import log_warning
-
 
 bot = ntbot.NtBot()
 

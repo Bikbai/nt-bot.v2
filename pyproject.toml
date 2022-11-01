@@ -1,0 +1,16 @@
+[project]
+name = "nordic_bot"
+description = "Nordic Tribe Alliance bot"
+version = "1.0.0"
+authors = [
+    { name = "Roman Demidov", email = "nt-bot@demidov.moscow" }
+]
+dependencies = [
+    "colorama",
+    "py-cord",
+    "jsonpickle",
+    "asyncio"
+]
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
