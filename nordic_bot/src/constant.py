@@ -7,7 +7,7 @@ from utility import log_critical, log_warning
 GUILD_LIST_URL = 'http://nordic-tribe.ru/guildlist.php'
 GL_FILENAME = './data/guild.txt'
 TR_FILENAME = "./data/timeroles.json"
-SLEEP_DELAY = os.environ.get("SLEEP_DELAY", 3601)
+SLEEP_DELAY = os.environ.get("SLEEP_DELAY", 3600)
 TOKEN_FILENAME = './data/token.key'
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
