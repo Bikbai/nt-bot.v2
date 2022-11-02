@@ -1,10 +1,13 @@
+echo off
 chcp 65001
-echo "Настройка виртуальной инфраструктуры venv"
+echo Обновление программы
+git pull
+echo Настройка виртуальной инфраструктуры venv
 python -m venv venv
-echo "Активация виртуализации"
+echo Активация виртуализации"
 call venv\Scripts\activate
-echo "Апгрейд необходимых для бота пакетов"
+echo Апгрейд необходимых для бота пакетов
 pip install --upgrade -r requirements.txt
-echo "Стартуем"
+echo Стартуем
 python .\src\main.py
 call venv\Scripts\deactivate
