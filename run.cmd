@@ -8,6 +8,8 @@ echo Активация виртуализации"
 call venv\Scripts\activate
 echo Апгрейд необходимых для бота пакетов
 pip install --upgrade -r requirements.txt
-echo Стартуем
+echo Стартуем бесконечный цикл
+:loop
 python .\src\main.py
+goto loop
 call venv\Scripts\deactivate

@@ -1,6 +1,6 @@
 import asyncio
-import subprocess
-from datetime import datetime
+import sys
+from datetime import datetime, timedelta
 from time import time, time_ns
 import os
 from dataclasses import dataclass
@@ -124,8 +124,13 @@ class NtBot(commands.Bot):
                 log_info(f"done. loading timed roles")
                 success = self.trStorage.load()
                 if success:
+                    start_time = datetime.now()
+
                     log_info(f"done. starting main loop")
                     while True:
+                        if start_time + timedelta(hours=24) < datetime.now():
+                            log_info(f'Перезагрузка бота для обновления')
+                            sys.exit()
                         log_info(f'Запуск проверки')
                         await self.check_guild()
                         log_info(f"Следующая проверка в: {datetime.fromtimestamp(time() + c.SLEEP_DELAY)}")

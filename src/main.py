@@ -7,11 +7,9 @@ import constant as c
 import ntbot
 from timerole import CommandContext, TimeRoleViewController, DurationModal
 import discord
-from utility import log_warning
-
+from utility import log_warning, log_info
 
 bot = ntbot.NtBot()
-
 
 @bot.user_command()  # Create a global user command
 async def newbie(ctx: discord.ApplicationContext, member: discord.Member):
@@ -47,4 +45,8 @@ async def on_command_error(context, exception):
     if isinstance(exception, commands.CommandNotFound):
         pass
 
-bot.run(c.BOT_TOKEN)
+try:
+    bot.run(c.BOT_TOKEN)
+except Exception as e:
+    log_info(f"Поймали исключение: {e}")
+
