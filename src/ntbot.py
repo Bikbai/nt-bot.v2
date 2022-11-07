@@ -173,7 +173,7 @@ class NtBot(commands.Bot):
     async def add_timed_role(self, member: discord.Member, role: discord.Role, ed: float) -> (str):
         try:
             nextRoleId = self.known_roles[c.RolesEnum.TRIAL_ROLE.name].id
-            tr = TimeRole(member.id, role.id, ed, member.display_name, nextRoleId)
+            tr = TimeRole(member.id, role.id, ed, nextRoleId)
             code = self.trStorage.merge(tr)
             match code:
                 case "I":
