@@ -20,7 +20,6 @@ class TimeRole:
     memberid: int
     roleid: int
     endDate: float
-    member_display_name: Optional[str]
     nextRoleId: int
 
 
@@ -67,7 +66,6 @@ class TimeRoles:
             if val.roleid == tr.roleid and val.memberid == tr.memberid:
                 val.endDate = tr.endDate
                 val.nextRoleId = tr.nextRoleId
-                val.member_display_name = tr.member_display_name
                 self.save()
                 return 'U'
         self._storage.append(tr)
