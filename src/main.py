@@ -24,6 +24,8 @@ async def newbie(ctx: discord.ApplicationContext, member: discord.Member):
     await ctx.send(f"Новичок: {msg}", delete_after=15)
 
 
+
+
 @bot.user_command()  # Create a global user command
 async def timerole(ctx: discord.ApplicationContext, member: discord.Member):  # User commands give a member param
     # тут контекст хранить бесполезно, ибо view не в диалоге работает и нельзя ждать окончания, как у модалки

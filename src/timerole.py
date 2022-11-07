@@ -10,6 +10,7 @@ from constant import RolesEnum
 from ntbot import NtBot
 
 
+
 class CommandContext:
     bot: NtBot
     duration: int = 0
