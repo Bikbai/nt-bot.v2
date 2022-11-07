@@ -24,6 +24,7 @@ class CommandContext:
         self.timeRoleList = RolesEnum.BuildSelectOption()
         # первая роль по-умолчанию выбрана
         self.timeRoleList[0].default = True
+        self.selectedRole = get(self.member.guild.roles, name=self.timeRoleList[0].value)
 
     async def saveRole(self, interaction: discord.Interaction):
         #do some shit
