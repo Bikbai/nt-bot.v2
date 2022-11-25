@@ -306,10 +306,7 @@ class NtBot(commands.Bot):
             else:
                 await member.add_roles(get(member.guild.roles, id=iTr.nextRoleId))
                 await asyncio.sleep(10)
-                log_info(f"Добавлена роль {get(member.guild.roles, id=iTr.nextRoleId).name}")
-            await member.remove_roles(get(member.guild.roles, id=iTr.roleid))
-            await asyncio.sleep(10)
-            msg = f"Временная роль очищена у пользователя {member.display_name}"
+                log_info(f"Временная роль просрочена, добавлена роль {get(member.guild.roles, id=iTr.nextRoleId).name}")
             log_warning(msg)
             return 2, msg
         return 1, msg
