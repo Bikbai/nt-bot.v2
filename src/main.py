@@ -4,7 +4,7 @@ import colorama
 import os
 from discord.ext import commands
 
-from src.raid import RaidView
+#from src.raid import RaidView
 
 colorama.init()
 import constant as c
@@ -43,12 +43,6 @@ async def check(ctx: discord.ApplicationContext, member: discord.Member):  # Use
     msg = await bot.validate_member(member, True)
     await ctx.followup.send(content=msg, ephemeral=True)
     await bot.validate_timed_roles_cmd(ctx=ctx, member=member)
-
-
-@bot.slash_command()  # Create a global user command
-async def raid(ctx: discord.ApplicationContext):  # User commands give a member param
-    view = RaidView()
-    await ctx.respond("Выбор роли рейда", view=view)
 
 
 @bot.slash_command()  # Create a global user command
