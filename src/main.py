@@ -16,18 +16,6 @@ from utility import log_warning, log_info
 bot = ntbot.NtBot()
 
 
-@bot.user_command()  # Create a global user command
-async def newbie(ctx: discord.ApplicationContext, member: discord.Member):
-    cctx = CommandContext(duration=30, member=member, bot=bot)
-    modal = DurationModal(tc=cctx)
-    await ctx.response.send_modal(modal)
-    await modal.wait()
-
-    msg = await bot.add_timed_role(member=member,
-                             role=bot.known_roles[c.RolesEnum.NEWBIE_ROLE.name],
-                             ed=cctx.getDurationTS())
-    await ctx.send(f"Новичок: {msg}", delete_after=15)
-
 
 @bot.user_command()  # Create a global user command
 async def timerole(ctx: discord.ApplicationContext, member: discord.Member):  # User commands give a member param
@@ -46,7 +34,7 @@ async def check(ctx: discord.ApplicationContext, member: discord.Member):  # Use
 
 
 @bot.slash_command()  # Create a global user command
-async def restart(ctx: discord.ApplicationContext):  # User commands give a member param
+async def ntbot_restart(ctx: discord.ApplicationContext):  # User commands give a member param
     exit(0)
 
 

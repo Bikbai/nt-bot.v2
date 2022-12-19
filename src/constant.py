@@ -19,7 +19,6 @@ class RolesEnum(Enum):
     UNCONFIRM_ROLE = 'Неподтверждённые'
     BOT_ROLE = 'Bot'
     REQRUITER_ROLE = 'Рекрутеры'
-    NEWBIE_ROLE = 'Новичок'
     TRIAL_ROLE = 'Аудит'
     CHILL_ROLE = 'Чилл'
     VAC_ROLE = 'Отпуск'
@@ -30,7 +29,6 @@ class RolesEnum(Enum):
         return {
             # сюда вписываем список доступных ролей для тайм-роли
             cls.CHILL_ROLE.name: "Освобождение от КТА на указанный срок",
-            cls.NEWBIE_ROLE.name: "Новичок на произвольный срок",
             cls.VAC_ROLE.name: "После истечения срока можно будет уточнить наличие",
             cls.PENY_ROLE.name: "Чтобы отследить - выплатил ли штраф",
         }
